@@ -1,0 +1,59 @@
+create database Sales
+
+create table Client
+(
+	id int primary key identity not null,
+	client_name nvarchar(50),
+	client_second_name nvarchar(50)	
+)
+
+create table Seller 
+(
+	id int primary key identity not null,
+	seller_name nvarchar(50),	
+	seller_second_name nvarchar(50)
+)
+
+create table sales 
+(
+	id_sales int primary key identity not null,
+	id_client int foreign key references Client(id),
+	id_seller int foreign key references Seller(id),
+	Sales_summ money,
+	Sales_time datetime  
+)
+
+--		Заполнить ее значениями при помощи Insert и написать такие запросы: 
+insert into Client
+values ('Максим', 'Пулеметов'),
+	('Агроном', 'Агрономыч'),
+	('Борис', 'Атаман'),
+	('Остап', 'Бендер'),
+	('Федор', 'Сумкин'),
+	('Сеня', 'Ганжа'),
+	('Баралгин', 'Гондурасский')
+
+insert into Seller
+values ('Шмыга', 'Голый'),
+	('Логоваз', 'Эльфийский'),
+	('Гиви', 'Церетелли'),
+	('Пендальф', 'Серый'),
+	('Саша', 'Белый'),
+	('Сарумян', 'Двуликий'),
+	('Эфералган', 'Гондурасский')
+
+select * from Client
+select * from sales
+select * from Seller
+
+insert into sales 
+values (4, 3, 15500, GETDATE()),
+		(1, 6, 15500, GETDATE()),
+		(2, 2, 15500, GETDATE()),
+		(6, 7, 15500, GETDATE()),
+		(7, 3, 15500, GETDATE()),
+		(4, 7, 15500, GETDATE()),
+		(3, 1, 15500, GETDATE()),
+		(5, 6, 15500, GETDATE()),
+		(4, 5, 15500, GETDATE()),
+		(4, 4, 15500, GETDATE())
